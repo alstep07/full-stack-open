@@ -60,14 +60,23 @@ const App = () => {
 			name: newName,
 			number: newNumber
 		};
-		personsService.create(nameObject).then((response) => {
-			setPersons([...persons, response]);
-			setNotificationType('note');
-			setNotification(`Added ${response.name}`);
-			setTimeout(() => {
-				setNotification(null);
-			}, 3000);
-		});
+		personsService
+			.create(nameObject)
+			.then((response) => {
+				setPersons([...persons, response]);
+				setNotificationType('note');
+				setNotification(`Added ${response.name}`);
+				setTimeout(() => {
+					setNotification(null);
+				}, 3000);
+			})
+			.catch((err) => {
+				setNotification(err.response.data.error);
+				setNotificationType('error');
+				setTimeout(() => {
+					setNotification(null);
+				}, 3000);
+			});
 	};
 
 	const handleSubmit = (e) => {
