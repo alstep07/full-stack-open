@@ -4,13 +4,11 @@ const Author = require('../models/author')
 const initialBlogs = [
   {
     title: "First blog",
-    author: "Stepanenko O.",
     url: "http://alstep07.github.io/friends-app/",
     likes: 11,
     },
     {
     title: "Second blog",
-    author: "Stepanenko O.",
     url: "http://alstep07.github.io/friends-app/",
     likes: 31,
     }
