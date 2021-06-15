@@ -9,13 +9,13 @@ blogsRouter.get('/', async (request, response) => {
 blogsRouter.post('/', async (request, response) => {
   const { body, author } = request
 
-  if (!body.title || !body.url) {
+  if (!body.text || !body.link) {
     response.status(400).end()
   } else {
     const blog = new Blog({
-      title: body.title,
+      text: body.text,
       author: author._id,
-      url: body.url,
+      link: body.link,
       likes: body.likes || 0
     })
 
