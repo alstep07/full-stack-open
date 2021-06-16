@@ -19,8 +19,29 @@ export const getAllBlogs = async () => {
 export const addNewBlog = async (newObject) => {
   const config = {
     headers: { Authorization: token },
-  }
+  };
 
-  const response = await axios.post(baseUrl, newObject, config)
-  return response.data
+  const response = await axios.post(baseUrl, newObject, config);
+  return response.data;
 };
+
+export const addLike = async (updatedBlog) => {
+  const url = baseUrl + '/' + updatedBlog.id;
+
+  const config = {
+    headers: { Authorization: token },
+  };
+
+  const response = await axios.put(url, updatedBlog, config);
+  return response.data;
+};
+
+export const removeBlog = async (id) => {
+  const url = baseUrl + '/' + id;
+
+  const config = {
+    headers: { Authorization: token },
+  };
+
+  await axios.delete(url, config);
+}

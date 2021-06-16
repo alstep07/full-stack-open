@@ -28,6 +28,14 @@ blogsRouter.post('/', async (request, response) => {
   }
 })
 
+blogsRouter.put('/:id', async (request, response) => {
+  const { body, author, params } = request
+
+  const updatedBlog = await Blog.findByIdAndUpdate(params.id, body, {new: true});
+  console.log(updatedBlog);
+  response.json(updatedBlog);
+})
+
 blogsRouter.delete('/:id', async (request, response) => {
   const { author } = request
   const blogToBeDeleted = await Blog.findById(request.params.id)

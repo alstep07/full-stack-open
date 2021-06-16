@@ -31,7 +31,7 @@ const BlogForm = ({ handleAddBlog }) => {
           onChange={({ target }) => setLink(target.value)}
         />
       </div>
-      <button type="submit">Add new blog</button>
+      <button type="submit">Post</button>
     </form>
   );
 };
