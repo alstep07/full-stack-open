@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { style } from './style';
 
 const BlogForm = ({ handleAddBlog }) => {
   const [text, setText] = useState('');
@@ -12,26 +13,33 @@ const BlogForm = ({ handleAddBlog }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        text
+    <form style={style.form} onSubmit={handleSubmit}>
+      <label>
         <input
+          style={style.input}
           type="text"
           value={text}
           name="text"
+          placeholder="blog text"
           onChange={({ target }) => setText(target.value)}
         />
-      </div>
-      <div>
-        link
+      </label>
+      <label>
         <input
+          style={style.input}
           type="text"
           value={link}
           name="link"
+          placeholder="url"
           onChange={({ target }) => setLink(target.value)}
         />
+      </label>
+      <div style={style.buttons}>
+        <button style={style.submit} type="submit">
+          Post
+        </button>
+        <button style={style.cancel}>Cancel</button>
       </div>
-      <button type="submit">Post</button>
     </form>
   );
 };

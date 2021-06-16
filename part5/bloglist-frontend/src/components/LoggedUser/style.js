@@ -4,17 +4,20 @@ export const style = {
     alignItems: 'center'
   },
   logoutButton: {
-    marginLeft: '1rem',
-    padding: '.2rem .4rem',
+    marginLeft: '.5rem',
+    padding: '.5rem 1rem',
+    fontSize: '1.2rem',
+    textDecoration: 'underline',
+    color: '#555',
     backgroundColor: '#fff',
     border: 'none',
     cursor: 'pointer',
-    borderRadius: '5px',
-    boxShadow: 'rgba(0, 0, 0, 0.1) 0px 0px 0px 1px',
   },
   user: {
+    padding: '.2rem',
     fontSize: '1.2rem',
-    color: '#555',
+    color: '#000',
+    backgroundColor: '#84e0e0',
     fontStyle: 'italic',
   }
-}
+};

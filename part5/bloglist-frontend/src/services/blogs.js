@@ -44,4 +44,4 @@ export const removeBlog = async (id) => {
   };
 
   await axios.delete(url, config);
-}
+};

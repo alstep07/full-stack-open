@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
+import { style } from './style';
 
 const LoginForm = ({ handleLogin }) => {
   const [username, setUsername] = useState('');
@@ -10,26 +11,28 @@ const LoginForm = ({ handleLogin }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        username
+    <form style={style.form} onSubmit={handleSubmit}>
+      <label>
         <input
+          style={style.input}
           type="text"
           value={username}
           name="Username"
+          placeholder="username"
           onChange={({ target }) => setUsername(target.value)}
         />
-      </div>
-      <div>
-        password
+      </label>
+      <label>
         <input
+          style={style.input}
           type="password"
           value={password}
           name="Password"
+          placeholder="password"
           onChange={({ target }) => setPassword(target.value)}
         />
-      </div>
-      <button type="submit">login</button>
+      </label>
+      <button style={style.submit} type="submit">Login</button>
     </form>
   );
 };
