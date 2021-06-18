@@ -17,7 +17,7 @@ const Togglable = forwardRef((props, ref) => {
   return visible ? (
     props.children
   ) : (
-    <button style={style.button} onClick={() => setVisible(true)}>Add blog &#43;</button>
+    <button id='add-blog' style={style.button} onClick={() => setVisible(true)}>Add blog &#43;</button>
   );
 });
 

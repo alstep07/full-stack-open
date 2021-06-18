@@ -27,6 +27,7 @@ const BlogForm = ({ handleAddBlog }) => {
       </label>
       <label>
         <input
+          id="link"
           style={style.input}
           type="text"
           value={link}
@@ -36,7 +37,7 @@ const BlogForm = ({ handleAddBlog }) => {
         />
       </label>
       <div style={style.buttons}>
-        <button style={style.submit} type="submit">
+        <button id='post' style={style.submit} type="submit">
           Post
         </button>
         <button style={style.cancel}>Cancel</button>
