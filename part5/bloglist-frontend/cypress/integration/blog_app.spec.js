@@ -12,8 +12,12 @@ describe('Blog app', function () {
     cy.visit('http://localhost:3000');
   });
 
-  it('front page can be opened', function () {
+  it('front page can be opened', () => {
     cy.contains('Blogs');
+  });
+
+  it('login form is shown', () => {
+    cy.contains('Login');
   });
 
   it('user with wrong credentials can not log in', () => {
@@ -32,18 +36,48 @@ describe('Blog app', function () {
 
   describe('When logged in', () => {
     beforeEach(() => {
-      cy.get('#username').type('tester');
-      cy.get('#password').type('111111');
-      cy.get('#login').click();
-      cy.contains('Ivan Ivanov');
+      cy.login({ username: 'tester', password: '111111' });
     });
 
     it('new blog can be added', () => {
-      cy.get('#add-blog').click();
-      cy.get('#text').type('new blog');
-      cy.get('#link').type('https://www.cypress.io/');
-      cy.get('#post').click();
+      cy.createBlog({ text: 'new blog', link: 'https://www.cypress.io/' });
       cy.contains('new blog');
+    });
+
+    describe('and blogs exist', () => {
+      beforeEach(() => {
+        cy.createBlog({ text: 'blog 1', link: 'google.com' });
+        cy.createBlog({ text: 'blog 2', link: 'google.com' });
+        cy.createBlog({ text: 'blog 3', link: 'google.com' });
+      });
+
+      it('blog can be liked', () => {
+        cy.contains('blog 2').parent().parent().find('.like').click();
+        cy.contains('blog 2').parent().parent().find('.like').contains('1');
+      });
+
+      it('blog can be deleted', () => {
+        cy.contains('blog 2').parent().parent().find('.remove').click();
+        cy.get('.blog').should('have.length', 2);
+      });
+
+      it('blogs are sorted by likes', () => {
+        cy.contains('blog 3').parent().parent().find('.like').click();
+        cy.wait(500);
+        cy.contains('blog 3').parent().parent().find('.like').click();
+        cy.wait(500);
+        cy.contains('blog 3').parent().parent().find('.like').click();
+        cy.wait(500);
+        cy.contains('blog 1').parent().parent().find('.like').click();
+        cy.wait(500);
+        cy.contains('blog 1').parent().parent().find('.like').click();
+        cy.wait(500);
+        cy.get('.like').then(likes => {
+          expect(likes[0]).to.contain(3);
+          expect(likes[1]).to.contain(2);
+          expect(likes[2]).to.contain(0);
+        });
+      });
     });
   });
 });

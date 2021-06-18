@@ -6,7 +6,7 @@ const Blog = ({ blog, handleAddLike, handleRemoveBlog, user }) => {
   const [details, setDetails] = useState(false);
 
   return (
-    <li style={style.container}>
+    <li className='blog' style={style.container}>
       <div style={style.blog}>
         <h3 style={style.title}>{blog.text}</h3>
         <p style={style.author}>- { blog.author.name}</p>
@@ -25,11 +25,12 @@ const Blog = ({ blog, handleAddLike, handleRemoveBlog, user }) => {
         >
           details
         </button>
-        <button style={style.likeButton} onClick={() => handleAddLike(blog.id)}>
+        <button className='like' style={style.likeButton} onClick={() => handleAddLike(blog.id)}>
           {blog.likes} <span style={style.likeHeart}>&#10084;</span>
         </button>
         {user.name === blog.author.name && (
           <button
+            className='remove'
             style={style.removeButton}
             onClick={() => handleRemoveBlog(blog.id)}
           >
