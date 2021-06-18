@@ -18,7 +18,7 @@ const MainContent = ({ user }) => {
       const blogs = await getAllBlogs();
       setBlogs(blogs);
     };
-    user && getBlogs();
+    getBlogs();
   }, []);
 
   const blogFormRef = useRef();

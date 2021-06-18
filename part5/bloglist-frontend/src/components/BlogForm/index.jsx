@@ -16,6 +16,7 @@ const BlogForm = ({ handleAddBlog }) => {
     <form style={style.form} onSubmit={handleSubmit}>
       <label>
         <input
+          id="text"
           style={style.input}
           type="text"
           value={text}
