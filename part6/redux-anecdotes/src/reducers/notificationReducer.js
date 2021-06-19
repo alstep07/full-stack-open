@@ -3,12 +3,16 @@ const initialState = {
 };
 
 export const setNotification = (message, delay) => {
+  if (window.notificationID) {
+    clearTimeout(window.notificationID);
+  }
+
   return dispatch => {
     dispatch({
       type: 'SHOW',
       data: { message },
     });
-    setTimeout(() => {
+    window.notificationID = setTimeout(() => {
       dispatch({
         type: 'HIDE'
       })
