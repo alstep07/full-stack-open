@@ -2,18 +2,19 @@ const initialState = {
   message: null,
 };
 
-export const showMessage = (message) => {
-  return {
-    type: 'SHOW',
-    data: { message },
-  };
-};
-
-export const hideMessage = () => {
-  return {
-    type: 'HIDE',
-  };
-};
+export const setNotification = (message, delay) => {
+  return dispatch => {
+    dispatch({
+      type: 'SHOW',
+      data: { message },
+    });
+    setTimeout(() => {
+      dispatch({
+        type: 'HIDE'
+      })
+    }, delay);
+  }
+}
 
 const notificationReducer = (state = initialState, action) => {
   switch (action.type) {
