@@ -1,12 +1,12 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { addAnecdote } from '../redux/reducers/anecdoteReducer';
-import { showMessage, hideMessage } from '../redux/reducers/notificationReducer';
+import { addAnecdote } from '../reducers/anecdoteReducer';
+import { showMessage, hideMessage } from '../reducers/notificationReducer';
 
 const AnecdoteForm = () => {
   const dispatch = useDispatch();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const content = e.target.anecdote.value;
     const message = `New anecdote '${content}' created.`
