@@ -2,6 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useField } from '../customHooks';
 import { noReset } from '../utils/helpers';
+import { Form, Button } from 'react-bootstrap';
 
 const CreateNew = (props) => {
   const content = useField('content');
@@ -29,24 +30,24 @@ const CreateNew = (props) => {
   return (
     <div>
       <h2>create a new anecdote</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          content
-          <input {...noReset(content)} />
-        </div>
-        <div>
-          author
-          <input {...noReset(author)} />
-        </div>
-        <div>
-          url for more info
-          <input {...noReset(info)} />
-        </div>
-        <button type="submit">create</button>
-        <button onClick={handleReset} type="reset">
+      <Form onSubmit={handleSubmit}>
+        <Form.Group>
+          <Form.Label>content</Form.Label>
+          <Form.Control {...noReset(content)} />
+        </Form.Group>
+        <Form.Group>
+          <Form.Label>author</Form.Label>
+          <Form.Control {...noReset(author)} />
+        </Form.Group>
+        <Form.Group>
+          <Form.Label>info</Form.Label>
+          <Form.Control {...noReset(info)} />
+        </Form.Group>
+        <Button variant="primary" type="submit">create</Button>
+        <Button variant="secondary" onClick={handleReset} type="reset">
           reset
-        </button>
-      </form>
+        </Button>
+      </Form>
     </div>
   );
 };

@@ -6,11 +6,12 @@ import AnecdoteList from './components/AnecdoteList';
 import Anecdote from './components/Anecdote';
 import CreateNew from './components/CreateNew';
 import About from './components/About';
+import Notification from './components/Notification';
 import Footer from './components/Footer';
 
 const App = () => {
   const [anecdotes, setAnecdotes] = useState(initialAnecdotes);
-  const [notification, setNotification] = useState('');
+  const [notification, setNotification] = useState(null);
 
   const addNew = (anecdote) => {
     anecdote.id = (Math.random() * 10000).toFixed(0);
@@ -18,7 +19,7 @@ const App = () => {
     const message = `new anecdode ${anecdote.content} was created`;
     setNotification(message);
     setTimeout(() => {
-      setNotification('');
+      setNotification(null);
     }, 10000)
   };
 
@@ -41,10 +42,10 @@ const App = () => {
     : null;
 
   return (
-    <div>
+    <div className="container">
       <h1>Software anecdotes</h1>
       <Menu />
-      <p>{notification}</p>
+      {notification && <Notification message={notification} />}
       <Switch>
         <Route path="/anecdotes/:id">
           <Anecdote anecdote={anecdote} />
